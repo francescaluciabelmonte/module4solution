@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contatore con Animazione</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        #counter {
+            font-size: 2em;
+            transition: opacity 0.2s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <h1>Contatore</h1>
+    <p>Valore: <span id="counter">0</span></p>
+    <button id="increment">Incrementa</button>
+    <button id="decrement">Decrementa</button>
+    <button id="reset">Reset</button>
+
+    <script>
+        // Inizializza il contatore a zero
+        var counterValue = 0;
+
+        // Seleziona gli elementi del DOM
+        var counterElement = document.getElementById('counter');
+        var incrementButton = document.getElementById('increment');
+        var decrementButton = document.getElementById('decrement');
+        var resetButton = document.getElementById('reset');
+
+        // Funzione per aggiornare il contatore con animazione
+        function updateCounter() {
+            // Anima la scomparsa
+            counterElement.style.opacity = '0';
+            setTimeout(function() {
+                // Aggiorna il valore del contatore e riapplica l'opacità
+                counterElement.textContent = counterValue;
+                counterElement.style.opacity = '1';
+            }, 200); // La durata dell'animazione in millisecondi deve essere la stessa della transizione CSS
+        }
+
+        // Funzione per incrementare il contatore
+        function incrementCounter() {
+            counterValue++;
+            updateCounter();
+        }
+
+        // Funzione per decrementare il contatore
+        function decrementCounter() {
+            counterValue--;
+            updateCounter();
+        }
+
+        // Funzione per resettare il contatore
+        function resetCounter() {
+            counterValue = 0;
+            updateCounter();
+        }
+
+        // Aggiungi eventi ai pulsanti
+        incrementButton.addEventListener('click', incrementCounter);
+        decrementButton.addEventListener('click', decrementCounter);
+        resetButton.addEventListener('click', resetCounter);
+    </script>
+</body>
+</html>
